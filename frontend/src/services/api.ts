@@ -1,0 +1,39 @@
+const API_BASE_URL = '/api';
+
+export async function apiRequest<T = any>(
+  endpoint: string,
+  options: RequestInit = {}
+): Promise<{ success: boolean; data?: T; message?: string; errors?: any[]; meta?: any }> {
+  const token = localStorage.getItem('wms_auth_token');
+
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...options.headers,
+  };
+
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    ...options,
+    headers,
+  });
+
+  if (response.status === 401 && !endpoint.includes('/auth/login')) {
+    localStorage.removeItem('wms_auth_token');
+    localStorage.removeItem('wms_auth_user');
+    window.location.href = '/login';
+  }
+
+  // Handle file/blob download
+  const contentType = response.headers.get('content-type');
+  if (contentType && contentType.includes('text/csv')) {
+    const text = await response.text();
+    return { success: true, data: text as any };
+  }
+
+  const json = await response.json();
+  if (!response.ok) {
+    throw new Error(json.message || 'Request failed with status ' + response.status);
+  }
+
+  return json;
+}
