@@ -314,7 +314,7 @@ export const PurchaseOrders: React.FC = () => {
                     </td>
                     <td className="px-4 py-3.5 text-right">
                       <span className="font-bold text-slate-900 dark:text-white text-sm">
-                        ${Number(po.totalAmount).toFixed(2)}
+                        ₹{Number(po.totalAmount).toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                       </span>
                       <div className="text-[10px] text-slate-400">
                         {po.items?.length || 0} line item(s) (incl. {Number(po.taxRate)}% tax)
@@ -491,7 +491,7 @@ export const PurchaseOrders: React.FC = () => {
                           required
                           value={item.unitPrice}
                           onChange={(e) => updateItemRow(index, 'unitPrice', parseFloat(e.target.value) || 0)}
-                          placeholder="Unit $"
+                          placeholder="Unit ₹"
                           className="w-full px-2 py-1.5 text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg"
                         />
                       </div>
@@ -514,7 +514,7 @@ export const PurchaseOrders: React.FC = () => {
                 <div className="flex justify-between">
                   <span className="text-slate-500">Subtotal</span>
                   <span className="font-semibold text-slate-800 dark:text-slate-200">
-                    ${calculateSubtotal().toFixed(2)}
+                    ₹{calculateSubtotal().toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
@@ -530,7 +530,7 @@ export const PurchaseOrders: React.FC = () => {
                 <div className="flex justify-between pt-1 border-t border-slate-200 dark:border-slate-700 font-bold text-sm">
                   <span className="text-slate-900 dark:text-white">Estimated Grand Total</span>
                   <span className="text-brand-600 dark:text-brand-400">
-                    ${(calculateSubtotal() * (1 + taxRate / 100)).toFixed(2)}
+                    ₹{(calculateSubtotal() * (1 + taxRate / 100)).toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                   </span>
                 </div>
               </div>

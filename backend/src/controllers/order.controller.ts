@@ -143,7 +143,7 @@ export const createPurchaseOrder = async (req: AuthenticatedRequest, res: Respon
       await tx.notification.create({
         data: {
           title: 'New Purchase Order Created',
-          message: `Order #${created.orderNumber} created for ${created.supplier.companyName} ($${totalAmount.toFixed(2)})`,
+          message: `Order #${created.orderNumber} created for ${created.supplier.companyName} (₹${totalAmount.toFixed(2)})`,
           type: 'PENDING_PO',
           link: `/purchase-orders/${created.id}`,
         },

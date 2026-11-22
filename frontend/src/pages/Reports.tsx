@@ -108,7 +108,7 @@ export const Reports: React.FC = () => {
           <div>
             <span className="text-[11px] text-slate-400 block font-semibold uppercase">Total Asset Valuation</span>
             <span className="text-xl font-bold text-slate-900 dark:text-white">
-              ${totalValuation.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              ₹{totalValuation.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </span>
           </div>
         </div>
@@ -211,13 +211,13 @@ export const Reports: React.FC = () => {
                       <span className="text-[10px] text-slate-400">{item.category}</span>
                     </td>
                     <td className="px-4 py-3 text-right font-medium text-slate-600 dark:text-slate-300">
-                      ${Number(item.costPrice).toFixed(2)}
+                      ₹{Number(item.costPrice).toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                     </td>
                     <td className="px-4 py-3 text-right font-bold text-slate-900 dark:text-white">
                       {item.totalStock} {item.unit}
                     </td>
                     <td className="px-4 py-3 text-right font-extrabold text-brand-600 dark:text-brand-400">
-                      ${Number(item.totalValuation).toFixed(2)}
+                      ₹{Number(item.totalValuation).toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                     </td>
                     <td className="px-4 py-3 text-center">
                       <span

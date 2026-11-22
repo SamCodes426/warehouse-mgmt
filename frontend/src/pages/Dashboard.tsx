@@ -177,7 +177,7 @@ export const Dashboard: React.FC = () => {
           </div>
           <div className="mt-3">
             <span className="text-xl font-bold text-slate-900 dark:text-white">
-              ${kpis.totalInventoryValue.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+              ₹{kpis.totalInventoryValue.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </span>
             <span className="text-[10px] text-slate-400 block mt-0.5">At wholesale cost</span>
           </div>

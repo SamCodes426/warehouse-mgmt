@@ -270,8 +270,8 @@ export const Inventory: React.FC = () => {
                       )}
                     </td>
                     <td className="px-4 py-3.5 text-right font-medium text-slate-800 dark:text-slate-200">
-                      <div>${prod.sellingPrice?.toFixed(2)}</div>
-                      <div className="text-[10px] text-slate-400">Cost: ${prod.costPrice?.toFixed(2)}</div>
+                      <div>₹{prod.sellingPrice?.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
+                      <div className="text-[10px] text-slate-400">Cost: ₹{prod.costPrice?.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
                     </td>
                     <td className="px-4 py-3.5 text-right">
                       <span className="font-bold text-slate-900 dark:text-white text-sm">
@@ -452,7 +452,7 @@ export const Inventory: React.FC = () => {
               <div className="grid grid-cols-3 gap-3">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                    Cost Price ($) *
+                    Cost Price (₹) *
                   </label>
                   <input
                     type="number"
@@ -466,7 +466,7 @@ export const Inventory: React.FC = () => {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                    Selling Price ($) *
+                    Selling Price (₹) *
                   </label>
                   <input
                     type="number"
@@ -584,13 +584,13 @@ export const Inventory: React.FC = () => {
                 <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
                   <span className="text-slate-400 block text-[10px] uppercase font-bold">Cost Price</span>
                   <span className="font-semibold text-slate-800 dark:text-slate-200">
-                    ${selectedProduct.costPrice?.toFixed(2)}
+                    ₹{selectedProduct.costPrice?.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                   </span>
                 </div>
                 <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">
                   <span className="text-slate-400 block text-[10px] uppercase font-bold">Selling Price</span>
                   <span className="font-semibold text-emerald-600 dark:text-emerald-400">
-                    ${selectedProduct.sellingPrice?.toFixed(2)}
+                    ₹{selectedProduct.sellingPrice?.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                   </span>
                 </div>
               </div>
