@@ -5,8 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import { apiRequest } from '../services/api';
 
 export const Login: React.FC = () => {
-  const [email, setEmail] = useState('admin@warehouse.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
@@ -34,12 +34,6 @@ export const Login: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleDemoFill = (demoEmail: string, demoPass: string) => {
-    setEmail(demoEmail);
-    setPassword(demoPass);
-    setError(null);
   };
 
   return (
@@ -170,45 +164,10 @@ export const Login: React.FC = () => {
           </button>
         </form>
 
-        {/* Demo Fast Login Selector */}
-        <div className="mt-8 pt-6 border-t border-slate-800">
-          <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2.5">
-            Quick Demo Logins (Click to Populate):
+        <div className="mt-8 pt-6 border-t border-slate-800 text-center">
+          <p className="text-xs text-slate-500">
+            Secure enterprise access protected by end-to-end SSL encryption.
           </p>
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => handleDemoFill('admin@warehouse.com', 'admin123')}
-              className="text-left p-2 rounded-lg bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-xs transition-colors"
-            >
-              <span className="font-semibold text-white block">👑 Admin</span>
-              <span className="text-[10px] text-slate-400">admin@warehouse.com</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleDemoFill('manager@warehouse.com', 'manager123')}
-              className="text-left p-2 rounded-lg bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-xs transition-colors"
-            >
-              <span className="font-semibold text-white block">🏢 Warehouse Mgr</span>
-              <span className="text-[10px] text-slate-400">manager@warehouse.com</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleDemoFill('staff@warehouse.com', 'staff123')}
-              className="text-left p-2 rounded-lg bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-xs transition-colors"
-            >
-              <span className="font-semibold text-white block">📦 Inventory Staff</span>
-              <span className="text-[10px] text-slate-400">staff@warehouse.com</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleDemoFill('viewer@warehouse.com', 'viewer123')}
-              className="text-left p-2 rounded-lg bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 text-xs transition-colors"
-            >
-              <span className="font-semibold text-white block">👁️ Viewer (Read Only)</span>
-              <span className="text-[10px] text-slate-400">viewer@warehouse.com</span>
-            </button>
-          </div>
         </div>
       </div>
     </div>
