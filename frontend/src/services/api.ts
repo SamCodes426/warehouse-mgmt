@@ -24,10 +24,26 @@ export async function apiRequest<T = any>(
   }
 
   // Handle file/blob download
-  const contentType = response.headers.get('content-type');
-  if (contentType && contentType.includes('text/csv')) {
+  const contentType = response.headers.get('content-type') || '';
+  if (contentType.includes('text/csv')) {
     const text = await response.text();
     return { success: true, data: text as any };
+  }
+
+  // Handle responses that are not JSON (e.g. HTML 404, 502 Bad Gateway while backend is deploying)
+  if (!contentType.includes('application/json')) {
+    const text = await response.text();
+    if (response.status === 404) {
+      throw new Error('API endpoint not found (HTTP 404). Backend deployment may still be updating.');
+    }
+    if (response.status === 502 || response.status === 503) {
+      throw new Error('Backend server is waking up or temporarily unavailable. Please retry in 10-15 seconds.');
+    }
+    throw new Error(
+      text && text.length < 120 && !text.includes('<!DOCTYPE')
+        ? text
+        : `Server returned unexpected response (HTTP ${response.status}).`
+    );
   }
 
   const json = await response.json();
