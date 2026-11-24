@@ -51,6 +51,8 @@ model User {
   isActive     Boolean         @default(true)
   warehouseId  String?
   warehouse    Warehouse?      @relation(fields: [warehouseId], references: [id], onDelete: SetNull)
+  resetToken       String?
+  resetTokenExpiry DateTime?
   movements    StockMovement[]
   purchaseOrders PurchaseOrder[]
   auditLogs    AuditLog[]

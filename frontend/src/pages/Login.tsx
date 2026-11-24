@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Package, Shield, Lock, Mail, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { apiRequest } from '../services/api';
@@ -140,7 +140,15 @@ export const Login: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1.5">Password</label>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="block text-xs font-medium text-slate-300">Password</label>
+              <Link
+                to="/forgot-password"
+                className="text-xs text-brand-400 hover:text-brand-300 transition-colors"
+              >
+                Forgot password?
+              </Link>
+            </div>
             <div className="relative">
               <Lock className="w-4 h-4 absolute left-3.5 top-3 text-slate-400" />
               <input
@@ -165,7 +173,13 @@ export const Login: React.FC = () => {
         </form>
 
         <div className="mt-8 pt-6 border-t border-slate-800 text-center">
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-400 mb-2">
+            Don't have an enterprise account?{' '}
+            <Link to="/register" className="text-brand-400 hover:text-brand-300 font-semibold underline underline-offset-4">
+              Register now
+            </Link>
+          </p>
+          <p className="text-[11px] text-slate-500">
             Secure enterprise access protected by end-to-end SSL encryption.
           </p>
         </div>
